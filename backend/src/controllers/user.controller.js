@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import { User } from "../models/user.model";
-import {user}
-=======
 import { User } from "../models/user.model.js";
 import httpStatus from "http-status"
 import bcrypt, { hash } from "bcrypt";
 import crypto from "crypto"
 
->>>>>>> e23ea2ccf518074471591502b4b0e0a481931028
 
 const login = async (req,res) => {
     const { username, password } = req.body ; 
