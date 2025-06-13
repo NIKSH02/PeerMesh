@@ -4,29 +4,33 @@ import bcrypt, { hash } from "bcrypt";
 import crypto from "crypto"
 
 
-const login = async (req,res) => {
-    const { username, password } = req.body ; 
+const login = async (req, res) => {
+    const { username, password } = req.body;
 
-    if (!username || !password ) {
-        return res.status(400).json({message : "Please provide required information "});
-    } // 👆 This is an early return for authentication ( It is called Early return)
+    if (!username || !password) {
+        return res.status(400).json({ message: "Please provide required information" });
+    }
 
-    try { 
-        const user = User.findOne({ username });
+    try {
+        const user = await User.findOne({ username }); 
         if (!user) {
-            return res.status(httpStatus.NOT_FOUND).json({message : "User Not Found "});
-        } 
-        if (bcrypt.compare(password, user.password)) {
-            let token = crypto.randomBytes(20).toString("hex")
+            return res.status(httpStatus.NOT_FOUND).json({ message: "User Not Found" });
         }
 
-        user.token = token; 
-        await user.save;
-        return res.status(httpStatus.OK).json({message: "user logged In "})
+        const isMatch = bcrypt.compare(password, user.password); 
+        if (!isMatch) {
+            return res.status(httpStatus.UNAUTHORIZED).json({ message: "Invalid credentials" });
+        }
+
+        const token = crypto.randomBytes(20).toString("hex"); //  Define token here, only if login is successful
+        user.token = token;
+        await user.save(); // Save user with new token
+
+        return res.status(httpStatus.OK).json({ message: "User logged in", token });
     } catch (e) {
-        return res.status(500).json({message : `Somthing went wrong ${e}`})
+        return res.status(500).json({ message: `Something went wrong: ${e.message}` });
     }
-}
+};
 
 const register = async (req,res) => {
     const { name, username, password } = req.body; 
