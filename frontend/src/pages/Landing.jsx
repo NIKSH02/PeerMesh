@@ -14,7 +14,7 @@ export default function Landing() {
                 <p>Join as Guest</p>
                 <p>Register</p>
                 <div role='button'>
-                    Login
+                    <Link to={"/auth"}>Login</Link>
                 </div>
             </div>
         </nav>
@@ -25,7 +25,7 @@ export default function Landing() {
                   Cover a distance by Apna Video Call</p>
                 <div role='button'>
                     &nbsp;
-                    <Link to={"/Home"}>Get Started</Link>
+                    <Link to={"/auth"}>Get Started</Link>
                 </div>
             </div>
             <div>

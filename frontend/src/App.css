@@ -72,3 +72,8 @@
   color: white;
   font-weight : 400;
 }
+
+.navList div[role='button'] a {
+  text-decoration: none;
+  color: white;
+}
