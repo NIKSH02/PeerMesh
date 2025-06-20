@@ -66,32 +66,32 @@ export default function SignInCard() {
     });
   };
 
-  const validateInputs = () => {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
+  // const validateInputs = () => {
+  //   const email = document.getElementById('email');
+  //   const password = document.getElementById('password');
 
-    let isValid = true;
+  //   let isValid = true;
 
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage('Please enter a valid email address.');
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage('');
-    }
+  //   if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+  //     setEmailError(true);
+  //     setEmailErrorMessage('Please enter a valid email address.');
+  //     isValid = false;
+  //   } else {
+  //     setEmailError(false);
+  //     setEmailErrorMessage('');
+  //   }
 
-    if (!password.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage('Password must be at least 6 characters long.');
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage('');
-    }
+  //   if (!password.value || password.value.length < 6) {
+  //     setPasswordError(true);
+  //     setPasswordErrorMessage('Password must be at least 6 characters long.');
+  //     isValid = false;
+  //   } else {
+  //     setPasswordError(false);
+  //     setPasswordErrorMessage('');
+  //   }
 
-    return isValid;
-  };
+  //   return isValid;
+  // };
 
   return (
     <Card variant="outlined">
@@ -103,7 +103,7 @@ export default function SignInCard() {
         variant="h4"
         sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
       >
-        {formState === 0 ? 'Sign in' : 'Sign up'}
+        {formState === 0 ? 'Sign in' : 'Sign up'} 
       </Typography>
       <Box
         component="form"
@@ -111,7 +111,7 @@ export default function SignInCard() {
         noValidate
         sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
       >
-        {formState == 1 ? <FormControl>
+        {formState == 1 && <FormControl>
           <FormLabel htmlFor="email">Full Name</FormLabel>
           <TextField
             error={emailError}
@@ -125,9 +125,10 @@ export default function SignInCard() {
             required
             fullWidth
             variant="outlined"
+            onChange={(e) => setName(e.target.value)}
             color={emailError ? 'error' : 'primary'}
           />
-        </FormControl> : null}
+        </FormControl> }
         <FormControl>
           <FormLabel htmlFor="email">Username</FormLabel>
           <TextField
@@ -143,6 +144,7 @@ export default function SignInCard() {
             fullWidth
             variant="outlined"
             color={emailError ? 'error' : 'primary'}
+            onChange={(e) => setUsernaem(e.target.value)}
           />
         </FormControl>
         <FormControl>
@@ -170,6 +172,7 @@ export default function SignInCard() {
             required
             fullWidth
             variant="outlined"
+            onChange={(e) => setPassword(e.target.value)}
             color={passwordError ? 'error' : 'primary'}
           />
         </FormControl>
@@ -178,9 +181,14 @@ export default function SignInCard() {
           label="Remember me"
         />
         <ForgotPassword open={open} handleClose={handleClose} />
-        <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
-          Sign in
-        </Button>
+        {formState == 0 ? 
+          <Button type="submit" fullWidth variant="contained" >
+            Sign in
+          </Button> 
+        :
+         <Button type="submit" fullWidth variant="contained" >
+            Sign up
+          </Button> }
         <Typography sx={{ textAlign: 'center' }}>
           {formState == 0 ? `Don't` : "Already"} have an account?{' '}
           <span>
