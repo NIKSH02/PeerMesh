@@ -17,7 +17,7 @@ const login = async (req, res) => {
             return res.status(httpStatus.NOT_FOUND).json({ message: "User Not Found" });
         }
 
-        const isMatch = bcrypt.compare(password, user.password); 
+        const isMatch = await bcrypt.compare(password, user.password); 
         if (!isMatch) {
             return res.status(httpStatus.UNAUTHORIZED).json({ message: "Invalid credentials" });
         }

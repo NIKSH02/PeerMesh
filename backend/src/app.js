@@ -24,7 +24,7 @@ app.get("/home", (req, res) => {
 });
 
 const start = async () => {
-  const connectionDB = await mongoose.connect(
+  const connectionDB = await mongoose.connect( 
     "mongodb+srv://nikhilsharma0437:dj0V8xg44df14kJQ@cluster1.tfp4c7x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1"
   );
   console.log(`MONGO Connected to DB Host : ${connectionDB.connection.host}`);

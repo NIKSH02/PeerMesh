@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
+import { AuthContext } from '../../contexts/AuthContext';
+import Snackbar from '@mui/material/Snackbar';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -39,12 +41,63 @@ export default function SignInCard() {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
-  
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
+  const [message, setMessage] = React.useState();
   const [username, setUsernaem] = React.useState();
   const [password, setPassword] = React.useState();
   const [name, setName] = React.useState();
+  const [error,setError] = React.useState();
 
   const [formState, setFormState] = React.useState(0); // 0 for signin and 1 for signup
+
+  const { handleLogin, handleRegister } = React.useContext(AuthContext)
+
+  let handleAuth = async () => {
+  let isValid = true;
+
+if (!username.trim()) {
+  setEmailError(true);
+  setEmailErrorMessage('Please enter a valid username.');
+  isValid = false;
+} else {
+  setEmailError(false);
+  setEmailErrorMessage('');
+}
+
+if (!password || password.length < 6) {
+  setPasswordError(true);
+  setPasswordErrorMessage('Password must be at least 6 characters long.');
+  isValid = false;
+} else {
+  setPasswordError(false);
+  setPasswordErrorMessage('');
+}
+    try {
+      if ( formState === 0) {
+        let result = await handleLogin(username, password);
+        console.log(result);
+        setMessage(result);
+        setOpenSnackbar(true);
+
+    }
+    if (formState === 1) {
+      let result = await handleRegister(name, username, password);
+      console.log(result);
+      setMessage(result);
+      setOpenSnackbar(true)
+      setError("");
+      setFormState(0);
+      setPassword("");
+    }
+    } catch (error) {
+      let message = error.response ? error.response.data.message : 'An error occurred';
+      setError(message);
+
+      //console.error('Authentication error:', error);
+    }
+  }
+  
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -54,43 +107,20 @@ export default function SignInCard() {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
-      return;
-    }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const handleSnackClose = () => {
+    setOpenSnackbar(false);
+  }
 
-  // const validateInputs = () => {
-  //   const email = document.getElementById('email');
-  //   const password = document.getElementById('password');
-
-  //   let isValid = true;
-
-  //   if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-  //     setEmailError(true);
-  //     setEmailErrorMessage('Please enter a valid email address.');
-  //     isValid = false;
-  //   } else {
-  //     setEmailError(false);
-  //     setEmailErrorMessage('');
+  // const handleSubmit = (event) => {
+  //   if (emailError || passwordError) {
+  //     event.preventDefault();
+  //     return;
   //   }
-
-  //   if (!password.value || password.value.length < 6) {
-  //     setPasswordError(true);
-  //     setPasswordErrorMessage('Password must be at least 6 characters long.');
-  //     isValid = false;
-  //   } else {
-  //     setPasswordError(false);
-  //     setPasswordErrorMessage('');
-  //   }
-
-  //   return isValid;
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
   // };
 
   return (
@@ -106,9 +136,9 @@ export default function SignInCard() {
         {formState === 0 ? 'Sign in' : 'Sign up'} 
       </Typography>
       <Box
-        component="form"
-        onSubmit={handleSubmit}
-        noValidate
+        //component="form"
+
+        //noValidate
         sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
       >
         {formState == 1 && <FormControl>
@@ -116,7 +146,7 @@ export default function SignInCard() {
           <TextField
             error={emailError}
             helperText={emailErrorMessage}
-            id="naem"
+            id="name"
             type="name"
             name="name"
             placeholder="John Doe"
@@ -137,6 +167,7 @@ export default function SignInCard() {
             id="username"
             type="username"
             name="username"
+            value={username}
             placeholder="@john_doe"
             autoComplete="username"
             autoFocus
@@ -167,6 +198,7 @@ export default function SignInCard() {
             placeholder="••••••"
             type="password"
             id="password"
+            value={password}
             autoComplete="current-password"
             autoFocus
             required
@@ -176,17 +208,19 @@ export default function SignInCard() {
             color={passwordError ? 'error' : 'primary'}
           />
         </FormControl>
-        <FormControlLabel
+        {/* <FormControlLabel
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
-        />
+          
+        /> */}
+        <p style={{color: "rgb(128 29 20)"}}>{error}</p>
         <ForgotPassword open={open} handleClose={handleClose} />
         {formState == 0 ? 
-          <Button type="submit" fullWidth variant="contained" >
+          <Button type="buttton" fullWidth variant="contained"  onClick={handleAuth}>
             Sign in
           </Button> 
         :
-         <Button type="submit" fullWidth variant="contained" >
+         <Button type="button" fullWidth variant="contained" onClick={handleAuth} >
             Sign up
           </Button> }
         <Typography sx={{ textAlign: 'center' }}>
@@ -225,6 +259,16 @@ export default function SignInCard() {
           Sign in with Facebook
         </Button>
       </Box> */}
+
+      <Snackbar />
+      {error && (
+        <Snackbar
+          open={openSnackbar}
+          autoHideDuration={4000}
+          onClose={handleSnackClose}
+          message={message || error}
+        />
+      )}
     </Card>
   );
 }
