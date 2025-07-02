@@ -726,7 +726,6 @@ useEffect(() => {
 
                 { showModal && 
                     <div>
-                        {/* <div className={styles.chatRoom}> */}
                         <div className={`${styles.chatContainer} ${!showModal ? styles.hidden : null}`} >
                             <h1>Chat</h1>
                             <div className={styles.chatDisplay}>
@@ -759,8 +758,7 @@ useEffect(() => {
                                 <button onClick={sendMessage} >Send</button>
                             </div>
                         </div>
-                                        </div>
-                    // </div>
+                     </div>
                     }
 
                 <div className= { styles.buttonContainer}>
