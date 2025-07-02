@@ -1,7 +1,7 @@
 .landingPageContainer {
   height : 100vh;
   width : 100vw;
-  background: url('/public/background.png');
+  background: url('/background.png');
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
@@ -18,7 +18,8 @@
 .landingPageContainer nav h2 {
   font-size: 2rem;
   font-weight: 600;
-  cursor: default;
+  cursor: pointer;
+
 }
 
 .landingPageContainer nav .navList {
@@ -33,6 +34,7 @@
   background-color: #D97500;
   padding: 0.25rem 1.8rem;
   border-radius: 0.3rem;
+  cursor: pointer;
 }
 
 .landingPageContent {
@@ -76,4 +78,21 @@
 .navList div[role='button'] a {
   text-decoration: none;
   color: white;
+  cursor: pointer;
+
+}
+.navHeader {
+  display: flex;
+  cursor: pointer;
+}
+
+.navList p div {
+  cursor: pointer;
+}
+
+.navHeader svg {
+  font-size: 2rem;
+  margin-inline: 1rem;
+  margin-block: .4rem;
+  cursor: pointer;
 }

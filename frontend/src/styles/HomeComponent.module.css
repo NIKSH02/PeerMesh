@@ -1,0 +1,144 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, p {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 600;
+}
+
+
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 20px;
+  padding-top: 1rem;
+  text-align: center;
+
+}
+
+.navBar p {
+  cursor: pointer;
+}
+
+.appBrand {
+  display: flex;
+  align-items: center; 
+}
+
+.appBrand img {
+  margin-left: 2rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+
+.btnContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.meetContainer {
+  display: flex;
+  padding-inline: 2.5rem;
+  height: 80vh;
+  gap: 10vw;
+  justify-content: center;
+}
+
+.fields {
+  display: flex;
+  gap: 1rem;
+  margin-top: .5rem;
+}
+
+.fields input {
+  width: 20vw;
+  height: 2.2vh;
+}
+
+.leftPanel {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.leftPanel p {
+  font-size: 1.85rem;
+  font-weight: 400;
+}
+
+.navBar  h2 {
+  margin-left: .5rem;
+}
+
+.rightPanel {
+  display: flex;
+  align-items: center;
+}
+
+.rightPanel > img {
+  width: 30vw;
+  height: auto;
+  border-radius: 20px;
+}
+
+.appBrandLogin {
+  display: flex;
+  align-items: center; 
+}
+
+.appBrandLogin img {
+  margin-left: 2rem;
+  height: 2.5rem;
+  font-size: 1rem;
+}
+
+.errorLogin {
+  display: flex;
+  justify-content: space-between;
+}
+
+.errorLogin button {
+  margin-top: 2rem;
+  margin-right: 15rem;
+}
+
+.errorLoginImg {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  width: auto;
+
+}
+
+.errorLoginImg > img {
+  height: 80vh;
+}
+
+.errorLoginContainer {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  height: fit-content;
+}
+
+.arrow > h2 {
+  text-align: center;
+}
+
+.arrow > img{
+  position: relative;
+  bottom: 3vh;
+  left: 2vw;
+  height: 20vh;
+  rotate: 225deg;
+  margin-top: 1rem;
+}
