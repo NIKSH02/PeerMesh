@@ -39,14 +39,14 @@ h1, h2, p {
     max-width: 300px;
     object-fit: cover;
     border-radius: 8px;
-    margin: 10px auto;
-    display: block;
+    /* margin: 10px auto; */
+    /* display: block; */
     background-color: #000;
 
 
 }
 
-/* .conferenceView {
+.conferenceView {
     display: flex;
     flex-wrap: wrap;
     width: 70vw;
@@ -54,36 +54,36 @@ h1, h2, p {
     gap: 1rem;
     padding: 1rem;
 
-} */
+} 
 
-/* .conferenceView video { */
+.conferenceView video {
     /* width: 20vw;
     min-width: 30vw;
     max-width: 60vw; */
-     /* border-radius: 1rem; */
+     border-radius: 1rem;
 
-    /* flex: 1 1 200px;          grow, shrink, base width */
-    /* max-width: 300px;         cap size if screen is large */
-    /* height: auto;             keep aspect ratio */
-    /* border-radius: 8px; */
-    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
-/* } */
+    flex: 1 1 200px;         /* grow, shrink, base width */
+    max-width: 300px;        /* cap size if screen is large*/
+    height: auto;           /*  keep aspect ratio*/
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+} 
 
-.conferenceView {
+/* .conferenceView {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* responsive */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); responsive 
   gap: 10px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-}
+} */
 
-.conferenceView video {
-  width: 100%;         /* Fill the grid column */
-  height: auto;        /* Keep aspect ratio */
+/* .conferenceView video {
+  width: 100%;         Fill the grid column
+  height: auto;        Keep aspect ratio
   object-fit: cover;
-  border-radius: 8px;  /* Optional */
-}
+  border-radius: 8px;  Optional
+} */
 
 @media (max-width: 600px) {
   .conferenceView {
@@ -91,11 +91,11 @@ h1, h2, p {
   }
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .conferenceView {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
-}
+} */
 
 .main {
   width: 100vw;
@@ -176,7 +176,7 @@ h1, h2, p {
 .chatInput {
   display: flex;
   flex-wrap: wrap;
-  position: absolute;
+
   bottom: 2vw;
   gap: 8px;
   margin-top: 12px;
@@ -184,14 +184,14 @@ h1, h2, p {
 
 .chatInput input {
   margin-left: 0.25rem;
-  width: 15rem;
-  padding: 10px;
   border-radius: 8px;
   border: none;
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
   outline: none;
-  font-size: 14px;
+  flex: 1;
+  padding: 0.75rem 1rem;
+  color: #fff;
 }
 
 .chatInput input::placeholder {
@@ -204,13 +204,15 @@ h1, h2, p {
 
 .chatInput button {
   width: 5rem;  
-  padding: 10px 16px;
   border: none;
   border-radius: 8px;
   background-color: #ffd700; 
   color: #000;
   font-weight: bold;
   cursor: pointer;
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+  font-weight: bold;
 }
 
 .chatInput button:hover {
