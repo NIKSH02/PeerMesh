@@ -35,7 +35,7 @@ export const connectToSocket = (server) => {
       for ( let i = 0 ; i < connections[path].length ; i++ ) {
         //if ( connections[path][i] !== socket.id ) {
           io.to(connections[path][i]).emit("user-joined", socket.id, connections[path]);
-          console.log(`User ${socket.id} joined room ${path}`);
+          // console.log(`User ${socket.id} joined room ${path}`);
         //}
       }
 
@@ -51,7 +51,7 @@ export const connectToSocket = (server) => {
 
     socket.on("signal", (toId, message) => {
       io.to(toId).emit("signal",socket.id, message);
-      console.log(`Signal sent from ${socket.id} to ${toId}`);
+      // console.log(`Signal sent from ${socket.id} to ${toId}`);
     });
 
     socket.on("signal", (toId, message) => {
@@ -81,7 +81,7 @@ export const connectToSocket = (server) => {
           'socket-id-sender': socket.id
         })
 
-        console.log('Message', 'received : ', data, 'from:', sender, 'in room:', matchingRoom);
+        // console.log('Message', 'received : ', data, 'from:', sender, 'in room:', matchingRoom);
 
         connections[matchingRoom].forEach((elem) => {
           io.to(elem).emit("chat-message", data, sender, socket.id);

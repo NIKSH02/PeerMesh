@@ -62,7 +62,7 @@ const register = async (req,res) => {
 }
 
 const getUserHistory = async (req, res) => {
-    console.log("getting history")
+    // console.log("getting history")
     const { token } = req.query;
 
     try {
@@ -75,7 +75,7 @@ const getUserHistory = async (req, res) => {
 }
 
 const addToHistory = async (req, res) => {
-    console.log("using add hostory")
+    // console.log("using add hostory")
     const { token, meeting_code } = req.body;
 
     try {
