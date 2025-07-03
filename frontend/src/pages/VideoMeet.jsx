@@ -17,11 +17,11 @@ import CommentsDisabledOutlinedIcon from '@mui/icons-material/CommentsDisabledOu
 
 import { useNavigate } from "react-router";
 import styles from "../styles/videoComponent.module.css"
-import Icon from '@mui/material/Icon';
 import Badge from '@mui/material/Badge';
+import server from '../enviroment';
 
 
-const server_url = "https://back.loca.lt";
+const server_url = `${server}`;
 
 var connections = {};
 
