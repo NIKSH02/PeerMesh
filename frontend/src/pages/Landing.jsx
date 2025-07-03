@@ -16,9 +16,12 @@ export default function Landing() {
     for (let i = 0; i < length; i++) {
       result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
+    console.log(result)
     return result;
   }
 
+  let guesturl = generateRandomString();
+  console.log(guesturl)
 
   return (
     <div className='landingPage'>
@@ -29,7 +32,7 @@ export default function Landing() {
               <h2>PeerMesh</h2>
             </div>
             <div className="navList">
-                <p onClick={() => { navigate(`/${generateRandomString}`)}}>Join as Guest</p>
+                <p onClick={() => { navigate(`/${guesturl}`)}}>Join as Guest</p>
                 <p onClick={() => {
                   navigate("/auth")
                 }}>Register</p>
