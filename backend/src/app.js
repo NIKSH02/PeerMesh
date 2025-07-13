@@ -19,7 +19,7 @@ app.use(express.urlencoded({limit: "40kb", extended: true}))
 app.use("/api/v1/users", userRoutes)
 
 
-app.get("/home", (req, res) => {
+app.get("/hume", (req, res) => {
   return res.json({ hello: "world" });
 });
 

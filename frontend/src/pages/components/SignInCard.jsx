@@ -126,7 +126,7 @@ if (!password || password.length < 6) {
   return (
     <Card variant="outlined">
       <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-        <SitemarkIcon />
+        {/* <SitemarkIcon /> */}
       </Box>
       <Typography
         component="h1"

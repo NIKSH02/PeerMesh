@@ -253,6 +253,12 @@ h1, h2, p {
   box-shadow: 0 8px 24px rgba(34, 0, 255, 0.149);
 }
 
+@media screen and (max-width: 800px) {
+  .lobbyInput {
+    width : auto
+  }
+}
+
 .lobbyInputField {
   display: flex;
   gap: 1rem;
@@ -263,12 +269,20 @@ h1, h2, p {
   height: 80vh;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   flex-direction: column;
   justify-content: space-around;
 }
 
+@media screen and (max-width: 800px) {
+  .lobbyContainer {
+    flex-wrap: nowrap;
+  }
+}
+
 .lobbyUserVideo {
   height: 100vh; 
+  width: 60vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -281,6 +295,15 @@ h1, h2, p {
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 24px rgba(34, 0, 255, 0.149);
   height: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .lobbyUserVideo > video {
+    width: 90vw;
+    padding: 10px;
+    margin: 10px;
+    /* scale: 1.8; */
+  }
 }
 
 .appBrand {
